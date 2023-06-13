@@ -1,0 +1,64 @@
+#formulario {
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.input {
+    background-color: white;
+    border-radius: 0;
+    padding: 0.6em;
+    font-size: 15px;
+    color: #7b7b7b;
+    border: 1px;
+    width: 100%;
+    margin-top: 0.4em;
+}
+
+#align {
+    text-align: start;
+    width: 400px;
+    margin: 0 auto;
+}
+
+#align h2 {
+    margin-bottom: 0.5em;
+    font-size: 2.4em;
+}
+
+#align p {
+    margin-bottom: 1.8em;
+    color: #7b7b7b;
+    font-size: 1.2em;
+}
+
+.label {
+    font-size: 1.2em;
+    font-weight: 700;
+}
+
+.afastar {
+    margin-bottom: 1.3em;
+}
+
+.select {
+    background-color: white;
+    border-radius: 0;
+    padding: 0.6em;
+    font-size: 15px;
+    color: #7b7b7b;
+    border: 1px;
+    width: 100%;
+    margin-top: 0.4em;
+}
+
+#botao {
+    margin-top: 2em;
+    background-color: #222;
+    padding: 0.5em 1em;
+    color: #fff;
+    border: none;
+    font-size: 20px;
+    font-weight: 500;
+    cursor: pointer;
+    border: none;
+}

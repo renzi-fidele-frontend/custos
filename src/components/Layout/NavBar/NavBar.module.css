@@ -1,0 +1,23 @@
+#cabecalho {
+    background-color: #222;
+}
+
+.flex {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 5em;
+}
+
+.link {
+    text-decoration: none;
+    margin-inline: 1em;
+    font-size: 1.2em;
+    color: #fff;
+}
+
+.link:hover {
+    transition: ease-in-out 0.5s all;
+    color: #ffbb33;
+}

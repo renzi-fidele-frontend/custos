@@ -1,0 +1,29 @@
+#footer {
+    background-color: #222;
+    text-align: center;
+    color: #fff;
+}
+
+#footer p {
+    padding-bottom: 0.5em;
+    font-size: 13px;
+}
+
+#flex {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+#flex li {
+    list-style-type: none;
+    margin-inline: 1em;
+    margin-top: 1.1em;
+    margin-bottom: 1em;
+}
+
+#flex li a:hover {
+    transition: all 0.3s ease-in-out;
+    color: #ffbb33;
+}

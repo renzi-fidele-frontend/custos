@@ -1,0 +1,43 @@
+{
+  "categorias": [
+    {
+      "id": 1,
+      "name": "Negócio pessoal"
+    },
+    {
+      "id": 2,
+      "name": "Estudo"
+    },
+    {
+      "id": 3,
+      "name": "Evento"
+    },
+    {
+      "id": 4,
+      "name": "Meta a alcançar"
+    },
+    {
+      "id": 5,
+      "name": "Outro"
+    }
+  ],
+  "projetos": [
+    {
+      "custo": 100,
+      "servicos": [
+        {
+          "nomeServico": "Comprar novo acessório",
+          "custo": "100",
+          "descricao": "Todas as semanas eu gasto esse valor"
+        }
+      ],
+      "nomeProjeto": "Tirar fotografia professional no Benfica",
+      "orcamento": "200",
+      "categoria": {
+        "id": "3",
+        "nome": "Evento"
+      },
+      "id": 1
+    }
+  ]
+}

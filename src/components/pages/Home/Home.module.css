@@ -1,0 +1,45 @@
+#flex {
+   display: flex;
+   flex-flow: column;
+   align-items: center;
+   justify-content: center;
+}
+
+#flex h2 {
+   font-size: 2.5em;
+}
+
+#flex > p {
+   margin-block: 1em;
+   font-size: 1.1em;
+   color: #7b7b7b;
+}
+
+/*Config do titulo*/
+#flex h2 span {
+   background-color: #222;
+   color: #ffbb33;
+   padding: 1.5px 6px;
+}
+
+#flex a {
+   text-decoration: none;
+   transition: all ease-in-out 0.5s;
+}
+
+#flex a p {
+   margin-block: 1em;
+   background-color: #222;
+   padding: 0.5em 1em;
+   color: #fff;
+
+}
+
+#flex a p:hover {
+   color: #ffbb33;
+}
+
+#imagem {
+   height: 330px;
+   margin-top: 20px;
+}

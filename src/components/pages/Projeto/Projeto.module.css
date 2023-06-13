@@ -1,0 +1,84 @@
+/*Config do titulo*/
+#nome {
+    background-color: #222;
+    color: #ffbb33;
+    font-size: 3em;
+    text-align: start;
+    width: fit-content;
+    margin-top: 1em;
+    padding: 9px 8px;
+}
+
+#botao {
+    margin-top: 3.7em;
+    transition: all ease-in-out 0.2s;
+    align-self: baseline;
+    background-color: #222;
+    padding: 0.5em 1em;
+    font-size: 20px;
+    color: #fff;
+    cursor: pointer;
+}
+
+#botao:hover {
+    color: #ffbb33;
+    scale: 1.2;
+}
+
+#sec {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+}
+
+.project_container {
+    text-align: start;
+}
+
+.project_container > ul {
+    margin-block: 2em;
+}
+
+.project_container > ul > li {
+    list-style: none;
+    margin-block: 0.4em;
+    font-size: 1.1em;
+}
+
+#div {
+    display: flex;
+    flex: row nowrap;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#div > div {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    width: 40%;
+}
+
+#div > div > hr {
+    margin-top: 15px;
+}
+
+#div > div > h2 {
+    margin-block: 1em;
+}
+
+
+#div > div > div {
+    display: flex;
+    flex-flow: row nowrap;
+    margin-top: 0.5em;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#div > div >div> h2 {
+    
+}
+
+#servicos_container {
+}

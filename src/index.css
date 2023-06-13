@@ -1,0 +1,15 @@
+* {
+   box-sizing: border-box;
+   padding: 0;
+   margin: 0;
+   font-family: "Open Sans", sans-serif;
+}
+
+.App {
+   min-height: 100vh;
+   justify-content: space-between;
+   display: flex;
+   flex-flow: column;
+   text-align: center;
+   background-color: #efefef;
+}
