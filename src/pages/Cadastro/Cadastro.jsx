@@ -23,7 +23,6 @@ const Cadastro = () => {
                 .then(async (userCredential) => {
                     //  Logando após criar a conta
                     console.log("Usuário cadastrado com sucesso", userCredential.user);
-                    
                 })
                 .catch((err) => {
                     let errorCode = err.code;

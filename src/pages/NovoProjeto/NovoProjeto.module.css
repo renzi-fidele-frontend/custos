@@ -62,3 +62,8 @@
     cursor: pointer;
     border: none;
 }
+
+#loading {
+    width: 300px;
+    margin: 0 auto;
+}

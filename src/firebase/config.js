@@ -16,4 +16,9 @@ const firebaseConfig = {
 // Inicializando o firebase
 const app = initializeApp(firebaseConfig);
 
-export { app };
+//  Chamando o banco de dados
+const db = getFirestore(app);
+
+
+
+export { app, db };
