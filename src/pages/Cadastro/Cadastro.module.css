@@ -1,0 +1,190 @@
+#container {
+    text-align: center;
+}
+
+#container > h2 {
+    font-size: 2.3em;
+    font-weight: 600;
+    margin-top: 1.4em;
+    margin-bottom: 0.4em;
+}
+
+#container > p {
+    margin-bottom: 1.6em;
+    font-size: 18px;
+}
+
+#container > div {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    margin: 0 auto;
+    margin-inline: 32%;
+    justify-content: space-between;
+    margin-top: 4em;
+}
+
+#container > div > img {
+    height: 320px;
+}
+
+#container > div > form {
+    text-align: start;
+    width: 100%;
+    margin-right: 2em;
+}
+
+#container > div > form > fieldset {
+    border: none;
+    display: flex;
+    flex-flow: column nowrap;
+    margin-bottom: 1em;
+}
+
+#container > div > form > fieldset > label {
+    margin-bottom: 1px;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+#container > div > form > fieldset > input {
+    padding: 6px;
+    background: transparent;
+    border-top: none;
+    border-inline: none;
+    font-size: 15px;
+    transition: 0.6s;
+}
+
+#container > div > form > fieldset > input:focus,
+#container > div > form > fieldset > input:hover {
+    background-color: rgb(241, 229, 66);
+}
+
+#container > div > form > button {
+    align-items: center;
+    background-clip: padding-box;
+    background-color: #292333;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 1.25;
+    margin: 0;
+    min-height: 3rem;
+    padding: calc(0.875rem - 1px) calc(1.5rem - 1px);
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: auto;
+}
+
+#container > div > form > button:hover,
+#container > div > form > button:focus {
+    background-color: #525150;
+    box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+}
+
+#container > div > form > button:hover {
+    transform: translateY(-3px);
+}
+
+#container > div > form > button:active {
+    background-color: #c85000;
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    transform: translateY(0);
+}
+
+@media screen and (max-width: 1742px) {
+    #container > div {
+        margin-inline: 29%;
+    }
+
+    #container > div > form > fieldset > input {
+        font-size: 14px;
+    }
+}
+
+@media screen and (max-width: 1634px) {
+    #container > div {
+        margin-inline: 24%;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    #container > div {
+        margin-inline: 19%;
+    }
+
+    #container > div > form > fieldset > label {
+        font-size: 0.9em;
+    }
+
+    #container > h2 {
+        font-size: 1.9em;
+    }
+}
+
+@media screen and (max-width: 1300px) {
+    #container > div {
+        margin-inline: 14%;
+    }
+}
+
+@media screen and (max-width: 824px) {
+    #container > div {
+        margin-inline: 9%;
+    }
+}
+
+@media screen and (max-width: 712px) {
+    #container > div {
+        margin-inline: 9%;
+    }
+}
+
+@media screen and (max-width: 638px) {
+    #container > div {
+        margin-inline: 3%;
+    }
+
+    #container > div > form {
+        margin-right: 0.4em;
+    }
+}
+
+@media screen and (max-width: 548px) {
+    #container > div {
+        flex-direction: column-reverse;
+        margin-top: 1em;
+    }
+
+    #container > h2 {
+        font-size: 1.4em;
+    }
+
+    #container > p {
+        font-size: 0.9em;
+    }
+
+    #container > div > img {
+        height: auto;
+        width: 150px;
+    }
+
+    #container > div > form {
+        display: flex;
+        flex-flow: column;
+    }
+}

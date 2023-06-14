@@ -1,16 +1,17 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Home from "./components/pages/Home/Home";
-import Contacto from "./components/pages/Contacto/Contacto";
-import Empresa from "./components/pages/Empresa/Empresa";
-import NovoProjeto from "./components/pages/NovoProjeto/NovoProjeto";
-import NavBar from "./components/Layout/NavBar/NavBar";
-import Projetos from "./components/pages/Projetos/Projetos";
-import Footer from "./components/Layout/Footer/Footer";
-import Projeto from "./components/pages/Projeto/Projeto";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import NavBar from "./components/NavBar/NavBar";
+import Footer from "./components/Footer/Footer";
+import Home from "./pages/Home/Home";
+import NovoProjeto from "./pages/NovoProjeto/NovoProjeto";
+import Projetos from "./pages/Projetos/Projetos";
+import Projeto from "./pages/Projeto/Projeto";
 import { useEffect, useState } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { AuthProvider } from "./context/AuthContext";
 import { app } from "./firebase/config";
+import Cadastro from "./pages/Cadastro/Cadastro";
+import Login from "./pages/Login/Login";
+import Sobre from "./pages/Sobre/Sobre";
 
 function App() {
     const [user, setUser] = useState(undefined);
@@ -35,11 +36,13 @@ function App() {
                     <NavBar />
                     <Routes>
                         <Route exact path="/" element={<Home />} />
-                        <Route path="/contacto" element={<Contacto />} />
-                        <Route path="/empresa" element={<Empresa />} />
-                        <Route path="/novo_projeto" element={<NovoProjeto />} />
-                        <Route path="/projetos" element={<Projetos />} />
-                        <Route path="/projetos/projeto/:id" element={<Projeto />} />
+                        <Route path="/sobre" element={<Sobre />} />
+                        <Route path="/cadastro" element={!user ? <Cadastro /> : <Navigate to={"/"} />} />
+                        <Route path="/entrar" element={!user ? <Login /> : <Navigate to={"/"} />} />
+                        <Route path="/projetos" element={user ? <Projetos /> : <Navigate to={"/entrar"} />} />
+                        <Route path="/novo_projeto" element={user ? <NovoProjeto /> : <Navigate to={"/entrar"} />} />
+                        <Route path="/projetos" element={user ? <Projetos /> : <Navigate to={"/entrar"} />} />
+                        <Route path="/projetos/projeto/:id" element={user ? <Projeto /> : <Navigate to={"entrar"} />} />
                     </Routes>
                     <Footer />
                 </AuthProvider>

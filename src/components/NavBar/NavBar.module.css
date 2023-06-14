@@ -10,11 +10,23 @@
     padding: 1em 5em;
 }
 
-.link {
+.flex > ul {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+.link,
+.flex > ul > p {
     text-decoration: none;
     margin-inline: 1em;
     font-size: 1.2em;
     color: #fff;
+}
+
+.flex > ul > p:hover {
+    color: red;
+    cursor: pointer;
 }
 
 .link:hover {

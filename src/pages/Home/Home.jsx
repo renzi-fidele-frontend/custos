@@ -1,5 +1,5 @@
 import styles from "./Home.module.css";
-import savings from "../../../images/savings.svg";
+import savings from "../../images/savings.svg";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 

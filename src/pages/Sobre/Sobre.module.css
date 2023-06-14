@@ -1,0 +1,142 @@
+#container {
+    text-align: center;
+}
+
+#container > h2 {
+    margin-bottom: 1.4em;
+    font-size: 2.5em;
+}
+
+#container > img {
+    width: 80px;
+}
+
+#linha {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding-inline: 16%;
+}
+
+#left {
+    margin-right: 2em;
+    text-align: center;
+}
+
+#left > img {
+    width: 60%;
+    border: 10px dashed rgb(160, 160, 212);
+    transition: border ease-in-out 0.2s;
+}
+
+#left > img:hover {
+    border: 10px solid rgb(229, 245, 5);
+}
+
+#right {
+    text-align: left;
+    align-items: center;
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@media screen and (max-width: 1773px) {
+    #linha {
+        padding-inline: 10%;
+    }
+}
+
+@media screen and (max-width: 1475px) {
+    #linha {
+        padding-inline: 6%;
+    }
+
+    #container > h2 {
+        font-size: 2em;
+    }
+}
+
+@media screen and (max-width: 1323px) {
+    #linha {
+        padding-left: 2%;
+        padding-right: 10%;
+    }
+
+    #right > p {
+        font-size: 14px;
+    }
+
+    #left {
+        text-align: right;
+    }
+
+    #left > img {
+        border: 5px dashed rgb(156, 17, 255);
+    }
+
+    #left > img:hover {
+        border: 5px solid pink;
+    }
+}
+
+@media screen and (max-width: 1201px) {
+    #linha {
+        grid-template-columns: 40% 60%;
+    }
+
+    #right > p {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 1053px) {
+    #left,
+    #right {
+        text-align: center;
+    }
+
+    #linha {
+        padding: 0;
+        grid-template-columns: auto;
+    }
+
+    #left {
+        margin-right: 0;
+    }
+
+    #left > img {
+        width: 200px;
+        margin-bottom: 2%;
+        border-radius: 50%;
+        border: 2px dashed rgb(156, 17, 255);
+    }
+
+    #right {
+        padding-inline: 8%;
+    }
+}
+
+@media screen and (max-width: 780px) {
+    #container > img {
+        width: 50px;
+    }
+}
+
+@media screen and (max-width: 564px) {
+    #left > img {
+        width: 30%;
+    }
+
+    #container > h2 {
+        font-size: 1.6em;
+    }
+
+    #linha {
+        margin-bottom: 3%;
+        padding-inline: 4%;
+    }
+    #right {
+        padding-inline: 0;
+    }
+}

@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
-import skull from "../../../images/skull.svg";
+import skull from "../../images/skull.svg";
 
 function Projetos() {
     const location = useLocation();
