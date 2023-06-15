@@ -23,9 +23,11 @@
     font-size: 1.2em;
     color: #fff;
 }
+.flex > ul > p {
+    color: red;
+}
 
 .flex > ul > p:hover {
-    color: red;
     cursor: pointer;
 }
 

@@ -1,24 +1,29 @@
 import styles from "./Projeto.module.css";
 import { motion } from "framer-motion";
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import estilo from "../NovoProjeto/NovoProjeto.module.css";
 import estilo2 from "../Projetos/Projetos.module.css";
 import { IoCaretBack } from "react-icons/io5";
 import { FaTrash } from "react-icons/fa";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase/config";
 function Projeto() {
     //  Hook para pegar parametros da url
     const id = useParams().id;
 
+    //  Pegando os dados do projeto
+    const projeto = useLocation().state;
+
     //  Mensagem que de sucesso de remoção de servico
     const [msgServico, setMsgServico] = useState("");
 
+    //  Hook para pegar as categorias
+    const [categorias, setCategorias] = useState([]);
+
     //  Hook para pegar os serviços
     const [servicos, setServicos] = useState([]);
-
-    //  Hook para pegar o projeto
-    const [projeto, setProjeto] = useState({});
 
     //  Hood do projeto atualizado
     const [projetoAtualizado, setProjetoAtualizado] = useState({});
@@ -28,9 +33,6 @@ function Projeto() {
 
     //  Hook para trocar entre Form/opção de adicionar serviços
     const [adicionar, setAdicionar] = useState(false);
-
-    //  Hook para pegar as categorias
-    const [categorias, setCategorias] = useState([]);
 
     //  Hook para enviar a mensagem de salvamento com sucesso
     const [salvo, setSalvo] = useState(false);
@@ -43,9 +45,6 @@ function Projeto() {
 
     //  Usando o useNavigate para redicionar para outra página
     const navegar = useNavigate();
-
-    //  Hook do custo total atualizado
-    const [custoAtualizado, setCustoAtualizado] = useState(0);
 
     //  Mensagem que de sucesso de remoção
     const [mensagem, setMensagem] = useState("");
@@ -62,38 +61,78 @@ function Projeto() {
     //  Erro ao se criar um serviço
     const [msgErroServico, setMsgErroServico] = useState("");
 
-    useEffect(() => {
-        //  Apanhando o projeto
-        fetch(`http://localhost:5000/projetos/${id}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then((resposta) => resposta.json())
-            .then((obj) => {
-                setCustoTotal(obj.custo);
-                setNomeCategoria(obj.categoria.nome);
-                setProjeto(obj);
-                setServicos(obj.servicos);
-            })
-            .catch((err) => console.log(`Ops, aconteceu o erro: ${err}`));
+    async function apanharCategorias() {
+        let q = doc(db, "categorias", "khT7a4sNOD1oaFA5SH6G");
 
-        //  Apanhando as categorias
-        fetch("http://localhost:5000/categorias", {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then((val) => val.json())
-            .then((val) => {
-                setCategorias(val);
-            })
-            .catch((err) => {
-                console.log(`Ops, aconteceu o erro: ${err}`);
+        let captura = await getDoc(q);
+
+        if (captura.exists()) {
+            console.log(captura.data().categorias);
+            setCategorias(captura.data().categorias);
+        } else {
+            console.log("O documento não existe");
+        }
+    }
+
+    useEffect(() => {
+        apanharCategorias();
+    }, []);
+
+    //  Adicionando um serviço
+    async function adicionarServico(e) {
+        e.preventDefault();
+
+        let novo_total = parseFloat(custoTotal) + parseFloat(document.querySelector("#custo").value);
+
+        //  Caso o custo do serviço a adicionar seja menor do que o orcamento
+        if (novo_total <= projeto.orcamento) {
+            //  Adicionando o servico
+            servicos.push({
+                nome: document.querySelector("#nomeServico").value,
+                custo: document.querySelector("#custo").value,
+                descricao: document.querySelector("#descricao").value,
             });
-    }, [id]);
+
+            console.log(novo_total);
+
+
+
+
+            console.log(ultimoProjeto);
+
+            //  Atualizando no db
+            fetch(`http://localhost:5000/projetos/${id}`, {
+                method: "PATCH",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(ultimoProjeto),
+            })
+                .then((val) => val.json())
+                .then((v) => console.log(v))
+                .catch((err) => console.log("Ops, aconteceu o erro", err));
+            setAdicionado(true);
+            setTimeout(() => {
+                setAdicionado(false);
+            }, 3000);
+
+            //  Atualizando na dashboard
+            setCustoTotal(novo_total);
+
+            //  Resetando os dados do formulário
+            document.querySelector("#nomeServico").value = "";
+            document.querySelector("#custo").value = "";
+            document.querySelector("#descricao").value = "";
+
+            setAdicionar(false);
+        } else {
+            console.log("Ops, O orcamento não é suficiente");
+            setMsgErroServico("O valor do orçamento não é suficiente");
+            setTimeout(() => {
+                setMsgErroServico("");
+            }, 2000);
+        }
+    }
 
     //  Removendo um Serviço
     function removeServico(key) {
@@ -160,31 +199,6 @@ function Projeto() {
         }
     }
 
-    //  Passando o nome do projeto em forma de objecto na mudanca
-    function handleChange(e) {
-        setProjeto({ ...projeto, [e.target.name]: e.target.value });
-        console.log(projeto);
-    }
-
-    //  Passando a categoria do projeto
-    function handleCategory(e) {
-        setProjeto({
-            ...projeto,
-            categoria: {
-                id: e.target.value,
-                nome: e.target.options[e.target.selectedIndex].text,
-            },
-        });
-    }
-
-    //  Passando o nome/orcamento do servico para o projeto
-    function addService() {
-        setProjeto({
-            ...projeto,
-            servicos: [servicos],
-        });
-    }
-
     return (
         <motion.section
             initial={{ opacity: 0 }}
@@ -194,7 +208,7 @@ function Projeto() {
         >
             <div id={styles.sec}>
                 <div className={styles.project_container}>
-                    <h1 id={styles.nome}>{projeto.nomeProjeto}</h1>
+                    <h1 id={styles.nome}>{projeto.data.titulo}</h1>
                     {/*Exibição inicial */}
                     {editar === false ? (
                         <ul>
@@ -337,66 +351,7 @@ function Projeto() {
                         {/*Caso queira adicionar um serviço ou não */}
                         {adicionar == true ? (
                             //  Formulário para adicionar serviço
-                            <form
-                                style={{ marginBlock: ".3em" }}
-                                id={estilo.formulario}
-                                onSubmit={(e) => {
-                                    e.preventDefault();
-
-                                    let novo_total = parseFloat(custoTotal) + parseFloat(document.querySelector("#custo").value);
-
-                                    //  Caso o custo do serviço a adicionar seja menor do que o orcamento
-                                    if (novo_total <= projeto.orcamento) {
-                                        //  Adicionando o servico
-                                        servicos.push({
-                                            nomeServico: document.querySelector("#nomeServico").value,
-                                            custo: document.querySelector("#custo").value,
-                                            descricao: document.querySelector("#descricao").value,
-                                        });
-
-                                        console.log(novo_total);
-
-                                        ultimoProjeto.servicos = servicos;
-
-                                        //  Modificando o projeto antes de atualizar no DB
-                                        ultimoProjeto.custo = novo_total;
-
-                                        console.log(ultimoProjeto);
-
-                                        //  Atualizando no db
-                                        fetch(`http://localhost:5000/projetos/${id}`, {
-                                            method: "PATCH",
-                                            headers: {
-                                                "Content-Type": "application/json",
-                                            },
-                                            body: JSON.stringify(ultimoProjeto),
-                                        })
-                                            .then((val) => val.json())
-                                            .then((v) => console.log(v))
-                                            .catch((err) => console.log("Ops, aconteceu o erro", err));
-                                        setAdicionado(true);
-                                        setTimeout(() => {
-                                            setAdicionado(false);
-                                        }, 3000);
-
-                                        //  Atualizando na dashboard
-                                        setCustoTotal(novo_total);
-
-                                        //  Resetando os dados do formulário
-                                        document.querySelector("#nomeServico").value = "";
-                                        document.querySelector("#custo").value = "";
-                                        document.querySelector("#descricao").value = "";
-
-                                        setAdicionar(false);
-                                    } else {
-                                        console.log("Ops, O orcamento não é suficiente");
-                                        setMsgErroServico("O valor do orçamento não é suficiente");
-                                        setTimeout(() => {
-                                            setMsgErroServico("");
-                                        }, 2000);
-                                    }
-                                }}
-                            >
+                            <form style={{ marginBlock: ".3em" }} id={estilo.formulario} onSubmit={adicionarServico}>
                                 <div
                                     className={estilo.afastar}
                                     style={{

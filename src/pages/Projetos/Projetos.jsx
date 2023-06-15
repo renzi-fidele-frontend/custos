@@ -118,7 +118,7 @@ function Projetos() {
                                                     <p
                                                         id={styles.editar}
                                                         onClick={() => {
-                                                            navegar(`projeto/${v.id}`);
+                                                            navegar(`${v.id}`, {state: {data: v.data}});
                                                         }}
                                                     >
                                                         <span>
