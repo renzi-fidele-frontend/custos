@@ -42,7 +42,7 @@ function App() {
                         <Route path="/projetos" element={user ? <Projetos /> : <Navigate to={"/entrar"} />} />
                         <Route path="/novo_projeto" element={user ? <NovoProjeto /> : <Navigate to={"/entrar"} />} />
                         <Route path="/projetos" element={user ? <Projetos /> : <Navigate to={"/entrar"} />} />
-                        <Route path="/projetos/:id" element={user ? <Projeto /> : <Navigate to={"entrar"} />} />
+                        <Route path="/projetos/:id" element={user ? <Projeto /> : <Navigate to={"/entrar"} />} />
                     </Routes>
                     <Footer />
                 </AuthProvider>
