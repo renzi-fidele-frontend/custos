@@ -7,7 +7,7 @@ import estilo from "../NovoProjeto/NovoProjeto.module.css";
 import estilo2 from "../Projetos/Projetos.module.css";
 import { IoCaretBack } from "react-icons/io5";
 import { FaTrash } from "react-icons/fa";
-import { Timestamp, arrayUnion, doc, getDoc, updateDoc } from "firebase/firestore";
+import { Timestamp, arrayUnion, doc, getDoc, increment, updateDoc } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import spinner from "../../images/spin.svg";
 
@@ -16,18 +16,10 @@ function Projeto() {
     const id = useParams().id;
 
     //  Pegando os dados do projeto
-    const projeto = useLocation().state;
+    const [projeto, setProjeto] = useState(useLocation().state.data);
 
     //  Mensagem que de sucesso de remoção de servico
     const [msgServico, setMsgServico] = useState("");
-
-    //  Hook para pegar as categorias
-    const [categorias, setCategorias] = useState([]);
-
-    //  Hook para pegar os serviços
-
-    //  Hook do projeto atualizado
-    const [projetoAtualizado, setProjetoAtualizado] = useState({});
 
     //  Hook para trocar entre Form/dados do projeto
     const [editar, seteditar] = useState(false);
@@ -44,7 +36,6 @@ function Projeto() {
     //  Hook para enviar a mensagem de erro de salvamento
     const [erroSalvo, setErroSalvo] = useState(false);
 
-    //  Usando o useNavigate para redicionar para outra página
     const navegar = useNavigate();
 
     const [loading, setLoading] = useState(false);
@@ -55,12 +46,15 @@ function Projeto() {
     //  Erro ao se criar um serviço
     const [msgErroServico, setMsgErroServico] = useState("");
 
+    //  Hook para pegar as categorias
+    const [categorias, setCategorias] = useState([]);
+
     //  Hooks do form
-    const [nome, setNome] = useState(projeto.data.titulo);
-    const [categoria, setCategoria] = useState(projeto.data.categoria);
-    const [orcamento, setOrcamento] = useState(projeto.data.orcamento);
-    const [custoTotal, setCustoTotal] = useState(projeto.data.custo);
-    const [servicos, setServicos] = useState(projeto.data.servicos);
+    const [nome, setNome] = useState(projeto.titulo);
+    const [categoria, setCategoria] = useState(projeto.categoria);
+    const [orcamento, setOrcamento] = useState(projeto.orcamento);
+    const [custoTotal, setCustoTotal] = useState(projeto.custo);
+    const [servicos, setServicos] = useState(projeto.servicos);
 
     async function apanharCategorias() {
         let q = doc(db, "categorias", "khT7a4sNOD1oaFA5SH6G");
@@ -82,7 +76,17 @@ function Projeto() {
     //  Adicionando um serviço
     async function adicionarServico(e) {
         e.preventDefault();
-        let novo_total = custoTotal + parseFloat(document.querySelector("#custo").value);
+        let nomeServico = document.querySelector("#nomeServico").value;
+        let custoServico = document.querySelector("#custo").value;
+        let descricaoServico = document.querySelector("#descricao").value;
+
+        setLoading(true);
+        let novo_total = custoTotal + parseFloat(custoServico);
+
+        //  Resetando os dados do formulário
+        document.querySelector("#nomeServico").value = "";
+        document.querySelector("#custo").value = 0;
+        document.querySelector("#descricao").value = "";
 
         //  Caso o custo do serviço a adicionar seja menor do que o orcamento
         if (novo_total <= orcamento) {
@@ -90,31 +94,31 @@ function Projeto() {
             const Ref = doc(db, "projetos", id);
 
             await updateDoc(Ref, {
+                custo: novo_total,
                 servicos: arrayUnion({
-                    nome: document.querySelector("#nomeServico").value,
-                    custo: document.querySelector("#custo").value,
-                    descricao: document.querySelector("#descricao").value,
+                    nome: nomeServico,
+                    custo: custoServico,
+                    descricao: descricaoServico,
                 }),
             });
 
-            console.log({
-                nome: document.querySelector("#nomeServico").value,
-                custo: document.querySelector("#custo").value,
-                descricao: document.querySelector("#descricao").value,
-            });
+            //  Pegando os dados do servico atualizados
+            let q = doc(db, "projetos", id);
 
+            let captura = await getDoc(q);
+
+            if (captura.exists()) {
+                setServicos(captura.data().servicos);
+                setCustoTotal(captura.data().custo);
+            } else {
+                console.log("O documento não existe");
+            }
+
+            //  Atualizando o valor no projeto
             setAdicionado(true);
             setTimeout(() => {
                 setAdicionado(false);
             }, 3000);
-
-            //  Atualizando na dashboard
-            setCustoTotal();
-
-            //  Resetando os dados do formulário
-            document.querySelector("#nomeServico").value = "";
-            document.querySelector("#custo").value = "";
-            document.querySelector("#descricao").value = "";
 
             setAdicionar(false);
         } else {
@@ -124,10 +128,12 @@ function Projeto() {
                 setMsgErroServico("");
             }, 2000);
         }
+        setLoading(false);
     }
 
     //  Removendo um Serviço
-    function removeServico(key) {
+    async function removeServico(key) {
+        setLoading(true);
         let novoTotal = parseFloat(custoTotal);
         let newService = servicos.filter((v, index) => {
             if (index == key) {
@@ -139,25 +145,17 @@ function Projeto() {
         });
         setServicos(newService);
 
-        console.log(key, newService);
-        projetoAtualizado.servicos = newService;
-        projetoAtualizado.custo = novoTotal;
-
         setCustoTotal(novoTotal);
 
-        //  Atualizando o serviço no banco de dados e o valor subtraido
-        fetch(`http://localhost:5000/projetos/${projeto.id}`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(projetoAtualizado),
-        })
-            .then((v) => v.json())
-            .then((v) => console.log(v))
-            .catch((err) => {
-                console.log(`Ops, aconteceu o erro: ${err}`);
-            });
+        const Ref = doc(db, "projetos", id);
+        await updateDoc(Ref, {
+            servicos: newService,
+            custo: novoTotal,
+        });
+
+
+
+        setLoading(false);
     }
 
     //  Atualizando/Salvando o projeto
@@ -165,7 +163,7 @@ function Projeto() {
         e.preventDefault();
         setLoading(true);
         //  Caso o valor do orçamento suporte o custo total ou não
-        if (projeto.data.orcamento >= custoTotal) {
+        if (projeto.orcamento >= custoTotal) {
             const Ref = doc(db, "projetos", id);
             await updateDoc(Ref, {
                 titulo: nome,
@@ -173,13 +171,24 @@ function Projeto() {
                 categoria: categoria,
                 custo: custoTotal,
             });
-
             setLoading(false);
             seteditar(false);
             setSalvo(true);
             setTimeout(() => {
                 setSalvo(false);
             }, 4000);
+            //  Pegando os dados do servico atualizados
+            let q = doc(db, "projetos", id);
+
+            let captura = await getDoc(q);
+
+            if (captura.exists()) {
+                setNome(captura.data().titulo);
+                setCategoria(captura.data().categoria);
+                setOrcamento(captura.data().orcamento);
+            } else {
+                console.log("O documento não existe");
+            }
         } else {
             setErroSalvo(true);
             setTimeout(() => {
@@ -303,7 +312,7 @@ function Projeto() {
                                                 Selecione a categoria
                                             </option>
                                             {categorias.map((e) => {
-                                                if (projeto.data.categoria.id == e.id) {
+                                                if (projeto.categoria.id == e.id) {
                                                     return (
                                                         <option selected value={e.id} key={e.id}>
                                                             {e.nome}

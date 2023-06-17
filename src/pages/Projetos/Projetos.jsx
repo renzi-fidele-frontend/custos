@@ -118,6 +118,7 @@ function Projetos() {
                                                     <p
                                                         id={styles.editar}
                                                         onClick={() => {
+                                                            console.log(v.data)
                                                             navegar(`${v.id}`, {state: {data: v.data}});
                                                         }}
                                                     >
