@@ -25,7 +25,6 @@ function Projeto() {
     const [categorias, setCategorias] = useState([]);
 
     //  Hook para pegar os serviços
-    const [servicos, setServicos] = useState([]);
 
     //  Hook do projeto atualizado
     const [projetoAtualizado, setProjetoAtualizado] = useState({});
@@ -61,6 +60,7 @@ function Projeto() {
     const [categoria, setCategoria] = useState(projeto.data.categoria);
     const [orcamento, setOrcamento] = useState(projeto.data.orcamento);
     const [custoTotal, setCustoTotal] = useState(projeto.data.custo);
+    const [servicos, setServicos] = useState(projeto.data.servicos);
 
     async function apanharCategorias() {
         let q = doc(db, "categorias", "khT7a4sNOD1oaFA5SH6G");
@@ -82,11 +82,10 @@ function Projeto() {
     //  Adicionando um serviço
     async function adicionarServico(e) {
         e.preventDefault();
-
-        let novo_total = parseFloat(custoTotal) + parseFloat(document.querySelector("#custo").value);
+        let novo_total = custoTotal + parseFloat(document.querySelector("#custo").value);
 
         //  Caso o custo do serviço a adicionar seja menor do que o orcamento
-        if (novo_total <= projeto.orcamento) {
+        if (novo_total <= orcamento) {
             //  Adicionando o servico
             const Ref = doc(db, "projetos", id);
 
@@ -98,7 +97,11 @@ function Projeto() {
                 }),
             });
 
-            console.log(novo_total);
+            console.log({
+                nome: document.querySelector("#nomeServico").value,
+                custo: document.querySelector("#custo").value,
+                descricao: document.querySelector("#descricao").value,
+            });
 
             setAdicionado(true);
             setTimeout(() => {
@@ -106,7 +109,7 @@ function Projeto() {
             }, 3000);
 
             //  Atualizando na dashboard
-            setCustoTotal(novo_total);
+            setCustoTotal();
 
             //  Resetando os dados do formulário
             document.querySelector("#nomeServico").value = "";
@@ -498,7 +501,6 @@ function Projeto() {
                                 )}
                             </div>
                             <hr />
-                            {/*Mostrando os serviços */}
                             <h2 style={{ margin: "16px 0px 0px 0px" }}>Serviços</h2>
                             <div id={styles.servicos_container}></div>
                         </div>
@@ -527,7 +529,7 @@ function Projeto() {
                             {servicos.map((v, index) => {
                                 return (
                                     <div key={index + 1} className={estilo2.project_card}>
-                                        <h2 id={estilo2.nome}>{v.nomeServico}</h2>
+                                        <h2 id={estilo2.nome}>{v.nome}</h2>
                                         <p id={estilo2.orcamento}>
                                             <strong>Custo total:</strong>
                                             {v.custo} MZN
