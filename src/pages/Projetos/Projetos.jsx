@@ -7,7 +7,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaPencilAlt, FaTrash } from "react-icons/fa";
 import notFound from "../../images/notFound.svg";
-import { collection, getDocs, query, where } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, query, where } from "firebase/firestore";
 import { db } from "../../firebase/config";
 import { AuthValue } from "../../context/AuthContext";
 import spinner from "../../images/spin.svg";
@@ -58,17 +58,11 @@ function Projetos() {
     }, []);
 
     //  Removendo um projeto
-    function removeProject(id) {
-        fetch(`http://localhost:5000/projetos/${id}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then(() => {
-                setMeusProjetos(meusProjetos.filter((projeto) => projeto.id !== id));
-            })
-            .catch((err) => console.log(`Ops, aconteceu o erro: ${err}`));
+    async function removeProject(id) {
+        let arr = [];
+        setLoading(true);
+        await deleteDoc(doc(db, "projetos", id));
+        apanhar();
     }
 
     return (
@@ -118,8 +112,8 @@ function Projetos() {
                                                     <p
                                                         id={styles.editar}
                                                         onClick={() => {
-                                                            console.log(v.data)
-                                                            navegar(`${v.id}`, {state: {data: v.data}});
+                                                            console.log(v.data);
+                                                            navegar(`${v.id}`, { state: { data: v.data } });
                                                         }}
                                                     >
                                                         <span>
