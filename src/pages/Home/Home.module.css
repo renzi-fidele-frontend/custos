@@ -1,45 +1,101 @@
 #flex {
-   display: flex;
-   flex-flow: column;
-   align-items: center;
-   justify-content: center;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
 }
 
 #flex h2 {
-   font-size: 2.5em;
+    font-size: 2.5em;
 }
 
 #flex > p {
-   margin-block: 1em;
-   font-size: 1.1em;
-   color: #7b7b7b;
+    margin-block: 1em;
+    font-size: 1.1em;
+    color: #7b7b7b;
 }
 
 /*Config do titulo*/
 #flex h2 span {
-   background-color: #222;
-   color: #ffbb33;
-   padding: 1.5px 6px;
+    background-color: #222;
+    color: #ffbb33;
+    padding: 1.5px 6px;
 }
 
 #flex a {
-   text-decoration: none;
-   transition: all ease-in-out 0.5s;
+    text-decoration: none;
+    transition: all ease-in-out 0.5s;
 }
 
 #flex a p {
-   margin-block: 1em;
-   background-color: #222;
-   padding: 0.5em 1em;
-   color: #fff;
-
+    margin-block: 1em;
+    background-color: #222;
+    padding: 0.5em 1em;
+    color: #fff;
 }
 
 #flex a p:hover {
-   color: #ffbb33;
+    color: #ffbb33;
 }
 
 #imagem {
-   height: 330px;
-   margin-top: 20px;
+    height: 330px;
+    margin-top: 20px;
+}
+
+@media screen and (max-width: 1602px) {
+    #imagem {
+        height: 270px;
+    }
+}
+
+@media screen and (max-width: 1459px) {
+    #flex > h2 {
+        font-size: 2em;
+    }
+}
+
+@media screen and (max-width: 1353px) {
+    #flex > p {
+        font-size: 0.9em;
+    }
+
+    #imagem {
+        height: 240px;
+    }
+}
+
+
+@media screen and (max-width: 1143px) {
+   #imagem {
+      height: 200px
+   }
+}
+
+@media screen and (max-width: 895px) {
+   #flex > h2 {
+      font-size: 1.7em;
+   }
+}
+
+@media screen and (max-width: 585px) {
+   #flex > h2 {
+      font-size: 1.4em;
+   }
+}  
+
+@media screen and (max-width: 367px) {
+   #imagem {
+      height: 180px;
+   }
+}
+
+@media screen and (max-width: 319px) {
+   #flex > h2 {
+      font-size: 1.2em;
+   }
+
+   #flex > p {
+      font-size: .85em;
+   }
 }
