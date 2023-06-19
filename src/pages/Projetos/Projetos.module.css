@@ -29,7 +29,7 @@
     margin-top: 2em;
     margin-left: 3em;
     display: grid;
-    grid-template-columns: 22% 22% 22% 22%;
+    grid-template-columns: 25% 25% 25% 25%;
 }
 
 .project_card {
@@ -107,7 +107,7 @@
     font-size: 1.1em;
     text-decoration: none;
     transition: all ease-in-out 0.19s;
-    align-self:baseline;
+    align-self: baseline;
 }
 
 .botao:hover {
@@ -168,4 +168,136 @@
     border: none;
     padding: 3px 4em;
     border-radius: 3%;
+}
+
+#edicoes > p > span {
+    margin-right: 4px;
+}
+
+@media screen and (max-width: 1691px) {
+    #projects_container {
+        grid-template-columns: 33% 33% 33%;
+    }
+
+    #col {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 1433px) {
+    #nome {
+        font-size: 1.1em;
+    }
+
+    #edicoes > p {
+        font-size: 0.8em;
+    }
+
+    .project_card {
+        margin: 0.5em;
+        padding: 0.7em;
+    }
+}
+
+@media screen and (max-width: 1031px) {
+    #projects_container {
+        grid-template-columns: 50% 50%;
+    }
+
+    #col {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 859px) {
+    #projects_container {
+        margin-top: 1em;
+    }
+
+    #col {
+        width: 78%;
+    }
+
+    #col > h2,
+    #col > div {
+        margin-left: 1em;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    #col {
+        width: 73%;
+    }
+
+    .project_card > p {
+        font-size: 14px;
+    }
+
+    .botao {
+        margin-right: 1em;
+    }
+}
+
+@media screen and (max-width: 647px) {
+    #col {
+        width: 75%;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    #projects_container {
+        grid-template-columns: 80%;
+    }
+
+    #col {
+        width: 70%;
+    }
+
+    #container {
+        padding-top: 1.5em;
+    }
+
+
+}
+
+@media screen and (max-width: 539px) {
+    #projects_container {
+        grid-template-columns: 90%;
+    }
+
+    #container {
+        padding-top: 0;
+    }
+
+
+    #col > h2 {
+        font-size: 1.4em;
+    }
+}
+
+@media screen and (max-width: 448px) {
+    #col {
+        width: 65%;
+    }
+
+    #projects_container {
+        grid-template-columns: 100%;
+    }
+
+}
+
+@media screen and (max-width: 383px) {
+    #flex {
+        flex-flow: column;
+    }
+
+    #col {
+        margin-bottom: 1em;
+        width: 100%;
+    }
+
+    .botao {
+        width: 70%;
+        margin: 0 auto;
+    }
 }
