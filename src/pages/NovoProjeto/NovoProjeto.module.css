@@ -16,7 +16,7 @@
 
 #align {
     text-align: start;
-    width: 400px;
+    padding-inline: 26%;
     margin: 0 auto;
 }
 
@@ -66,4 +66,101 @@
 #loading {
     width: 300px;
     margin: 0 auto;
+}
+
+#linha {
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+
+#linha > img {
+    margin-left: 20%;
+}
+
+@media screen and (max-width: 1487px) {
+    #linha {
+        grid-template-columns: 50% 45%;
+    }
+
+    #align {
+        padding-inline: 22%;
+    }
+}
+
+@media screen and (max-width: 1327px) {
+    #align > h2 {
+        font-size: 2.1em;
+    }
+}
+
+@media screen and (max-width: 1195px) {
+    #align {
+        padding-inline: 18%;
+    }
+
+    #linha {
+        grid-template-columns: 50% 50%;
+    }
+}
+
+@media screen and (max-width: 999px) {
+    #align > h2 {
+        font-size: 1.8em;
+    }
+
+    #botao {
+        margin-top: 1em;
+    }
+}
+
+@media screen and (max-width: 907px) {
+    #align {
+        padding-inline: 14%;
+    }
+}
+
+@media screen and (max-width: 781px) {
+    #align {
+        padding-inline: 9%;
+    }
+}
+
+@media screen and (max-width: 671px) {
+    #align {
+        padding-inline: 4%;
+    }
+}
+
+@media screen and (max-width: 601px) {
+    #align {
+        text-align: center;
+    }
+
+    #linha > form {
+        text-align: start;
+    }
+
+    #linha {
+        display: flex;
+        flex-flow: column-reverse;
+    }
+
+    #align > h2 {
+        margin-top: 6%;
+    }
+
+    .label {
+        font-size: 1em;
+    }
+
+    #botao {
+        width: 100%;
+        margin-bottom: 6%;
+    }
+
+    #linha > img {
+        width: 180px;
+        margin: 0 auto;
+        margin-bottom: 5%;
+    }
 }
