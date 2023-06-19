@@ -71,11 +71,22 @@
     }
 
     .responsivo {
-        position: fixed;
+        position: absolute;
         top: 0;
         width: 100%;
         height: 100vh;
         z-index: 3;
+        animation: deslizar 1.1s ;
+    }
+
+    @keyframes deslizar {
+        from {
+            transform: translateY(-100vh);
+            opacity: 0;
+        } to {
+            transform: translateY(0);
+            opacity: 1;
+        }
     }
 
     .responsivo #abrir,
