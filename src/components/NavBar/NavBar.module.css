@@ -76,12 +76,12 @@
         width: 100%;
         height: 100vh;
         z-index: 3;
-        animation: deslizar 1.1s ;
+        animation: deslizar .7s ease-in-out ;
     }
 
     @keyframes deslizar {
         from {
-            transform: translateY(-100vh);
+            transform: translateY(-1000px);
             opacity: 0;
         } to {
             transform: translateY(0);
