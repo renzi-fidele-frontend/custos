@@ -83,7 +83,7 @@ function Login() {
                             placeholder="Insira sua senha"
                         />
                     </fieldset>
-                    <button>Cadastrar</button>
+                    <button>Entrar</button>
 
                     {/*Caso hava erro ao se fazer login */}
                     {erroMsg.length > 0 ? (
