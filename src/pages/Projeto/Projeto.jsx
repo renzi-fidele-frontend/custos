@@ -203,7 +203,6 @@ function Projeto() {
                     transition={{ duration: 1.4 }}
                     id={styles.container}
                     animate={{ opacity: 1 }}
-                    style={{}}
                 >
                     <div id={styles.sec}>
                         <div className={styles.project_container}>
@@ -545,6 +544,7 @@ function Projeto() {
                                                 alignSelf: "start",
                                                 marginLeft: 0,
                                             }}
+                                            className={styles.removeBtn}
                                             onClick={() => {
                                                 //  Removendo o serviço
                                                 removeServico(index);
