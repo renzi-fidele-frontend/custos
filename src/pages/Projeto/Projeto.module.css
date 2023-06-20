@@ -192,6 +192,10 @@
         font-size: 0.8em;
     }
 
+    #container {
+        padding-left: 1%;
+    }
+
     .btn {
         display: none;
     }

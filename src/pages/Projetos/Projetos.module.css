@@ -276,6 +276,9 @@
 }
 
 @media screen and (max-width: 448px) {
+    
+
+    
     #col {
         width: 65%;
     }
