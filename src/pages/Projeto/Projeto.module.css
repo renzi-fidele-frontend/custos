@@ -6,7 +6,14 @@
     text-align: start;
     width: fit-content;
     margin-top: 1em;
+    margin-right: 1em;
     padding: 9px 8px;
+}
+
+#container {
+    min-height: 80vh;
+    margin-inline: 6%;
+    text-align: left;
 }
 
 #botao {
@@ -67,7 +74,6 @@
     margin-block: 1em;
 }
 
-
 #div > div > div {
     display: flex;
     flex-flow: row nowrap;
@@ -76,9 +82,130 @@
     align-items: center;
 }
 
-#div > div >div> h2 {
-    
+.btn {
+    background-color: #686764;
+    width: fit-content;
+    font-size: 16px;
+    margin-top: 9px;
+    font-weight: 500;
+    align-self: baseline;
+    padding: .5em 1em;
 }
 
-#servicos_container {
+.btn:hover {
+    cursor: pointer;
+}
+
+@media screen and (max-width: 1402px) {
+    #nome {
+        font-size: 2.5em;
+    }
+}
+
+@media screen and (max-width: 1298px) {
+    #div > div {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 1062px) {
+    #div h2 {
+        font-size: 1.1em;
+    }
+
+    #botao {
+        font-size: 17px;
+    }
+
+    .project_container > ul > li {
+        font-size: 1em;
+    }
+
+    #nome {
+        font-size: 2.2em;
+    }
+}
+
+@media screen and (max-width: 974px) {
+    #nome {
+        font-size: 1.9em;
+    }
+}
+@media screen and (max-width: 808px) {
+    #div > div {
+        width: 60%;
+    }
+
+    #container {
+        margin-inline: 2%;
+    }
+}
+
+@media screen and (max-width: 702px) {
+    #nome {
+        font-size: 1.5em;
+    }
+
+    #botao {
+        font-size: 15px;
+        font-weight: 500;
+    }
+
+    #div h2 {
+        font-size: 0.9em;
+    }
+
+    #div > div > div {
+        margin-top: 3px;
+    }
+
+    #div > div > hr {
+        margin-top: 3px;
+    }
+}
+
+@media screen and (max-width: 508px) {
+    #div > div {
+        width: 72%;
+    }
+
+    #sec {
+        flex-flow: column;
+    }
+
+    #botao {
+        margin-top: 0;
+        margin-bottom: .5em;
+
+    }
+
+    .project_container > ul {
+        margin-block: .7em;
+    }
+
+}
+
+@media screen and (max-width: 424px) {
+    .project_container > ul > li {
+        font-size: .8em;
+    }
+
+    .btn {
+        display: none;
+    }
+
+    #nome {
+        font-size: 1.2em;
+    }
+
+    #botao {
+        font-size: 14px;
+    }
+
+    #div > div {
+        width: 95%;
+    }
+
+
+
 }

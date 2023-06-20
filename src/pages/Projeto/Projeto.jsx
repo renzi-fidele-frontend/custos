@@ -153,8 +153,6 @@ function Projeto() {
             custo: novoTotal,
         });
 
-
-
         setLoading(false);
     }
 
@@ -203,8 +201,9 @@ function Projeto() {
                 <motion.section
                     initial={{ opacity: 0 }}
                     transition={{ duration: 1.4 }}
+                    id={styles.container}
                     animate={{ opacity: 1 }}
-                    style={{ minHeight: "80vh", marginInline: "6%", textAlign: "left" }}
+                    style={{}}
                 >
                     <div id={styles.sec}>
                         <div className={styles.project_container}>
@@ -515,16 +514,8 @@ function Projeto() {
                         </div>
                         <motion.p
                             whileHover={{ scale: 1.1, opacity: 0.7, color: "#ffbb33" }}
-                            style={{
-                                backgroundColor: "#686764",
-                                width: "fit-content",
-                                fontSize: "16px",
-                                marginTop: "9px",
-                                fontWeight: "500",
-                                alignSelf: "baseline",
-                            }}
-                            id={estilo.botao}
-                            onClick={() => {
+                            className={styles.btn}
+                                onClick={() => {
                                 navegar("../projetos");
                             }}
                             transition={{ duration: 0.2 }}
