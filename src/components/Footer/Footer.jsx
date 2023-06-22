@@ -1,36 +1,17 @@
-import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import styles from "./Footer.module.css";
-import { motion } from "framer-motion";
 
-function Footer() {
+const Footer = () => {
     return (
         <footer id={styles.footer}>
-            <ul id={styles.flex}>
-                <li>
-                    <a>
-                        <FaFacebook size={30} />
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <FaInstagram size={30} />
-                    </a>
-                </li>
-                <li>
-                    <a>
-                        <FaLinkedin size={30} />
-                    </a>
-                </li>
-            </ul>
             <p>
-                © Direitos reservados por{" "}
-                <span style={{ color: "#ffbb33", fontWeight: "800" }}>
-                    Custos
-                </span>{" "}
-                - 2022
+                <span>Custos</span> © Copyright 2023
             </p>
+            <div>
+                <p>Desenvolvedor: </p>
+                <a href="https://anovafase.com/renzi-fidele">Renzi Fidele</a>
+            </div>
         </footer>
     );
-}
+};
 
 export default Footer;
