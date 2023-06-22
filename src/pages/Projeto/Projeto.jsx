@@ -198,12 +198,7 @@ function Projeto() {
     return (
         <>
             {loading === false ? (
-                <motion.section
-                    initial={{ opacity: 0 }}
-                    transition={{ duration: 1.4 }}
-                    id={styles.container}
-                    animate={{ opacity: 1 }}
-                >
+                <motion.section initial={{ opacity: 0 }} transition={{ duration: 1.4 }} id={styles.container} animate={{ opacity: 1 }}>
                     <div id={styles.sec}>
                         <div className={styles.project_container}>
                             <h1 id={styles.nome}>{nome}</h1>
@@ -222,7 +217,7 @@ function Projeto() {
                                 </ul>
                             ) : (
                                 //  Formulário para editar o projeto
-                                <form onSubmit={update} style={{ marginBlock: "2.5em" }} id={estilo.formulario}>
+                                <form onSubmit={update} className={styles.formEditar} id={estilo.formulario}>
                                     <div
                                         className={estilo.afastar}
                                         style={{
@@ -328,13 +323,14 @@ function Projeto() {
                                     </div>
                                     <motion.button
                                         whileHover={{
-                                            scale: 1.2,
+                                            scale: 1.1,
                                             color: "#ffbb33",
                                         }}
                                         style={{
                                             alignSelf: "start",
                                             marginTop: "20px",
                                         }}
+                                        className={styles.salvarBtn}
                                         id={estilo.botao}
                                         transition={{ duration: 0.2 }}
                                         type="submit"
@@ -361,7 +357,7 @@ function Projeto() {
                                 {/*Caso queira adicionar um serviço ou não */}
                                 {adicionar == true ? (
                                     //  Formulário para adicionar serviço
-                                    <form style={{ marginBlock: ".3em" }} id={estilo.formulario} onSubmit={adicionarServico}>
+                                    <form className={styles.formAdicionar} id={estilo.formulario} onSubmit={adicionarServico}>
                                         <div
                                             className={estilo.afastar}
                                             style={{
@@ -444,6 +440,7 @@ function Projeto() {
                                                 marginTop: "1px",
                                             }}
                                             id={estilo.botao}
+                                            className={styles.adicionarBtn}
                                             onSubmit={adicionarServico}
                                             transition={{ duration: 0.2 }}
                                             type="submit"
@@ -514,7 +511,7 @@ function Projeto() {
                         <motion.p
                             whileHover={{ scale: 1.1, opacity: 0.7, color: "#ffbb33" }}
                             className={styles.btn}
-                                onClick={() => {
+                            onClick={() => {
                                 navegar("../projetos");
                             }}
                             transition={{ duration: 0.2 }}
