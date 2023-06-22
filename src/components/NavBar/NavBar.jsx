@@ -3,7 +3,7 @@ import logo from "../../images/costs_logo.png";
 import styles from "./NavBar.module.css";
 import { motion } from "framer-motion";
 import { AuthValue } from "../../context/AuthContext";
-import { getAuth } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
 import { app } from "../../firebase/config";
 import { useRef } from "react";
 import { BiWindowClose } from "react-icons/bi";
