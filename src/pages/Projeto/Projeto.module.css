@@ -111,7 +111,6 @@
     }
 }
 
-
 @media screen and (max-width: 1402px) {
     #nome {
         font-size: 2.5em;
@@ -133,7 +132,6 @@
     #div > div {
         width: 65%;
     }
-
 
     .formEditar label {
         font-size: 1em;
@@ -176,22 +174,21 @@
         width: 70%;
     }
 
-    .formAdicionar input, .formAdicionar select{
+    .formAdicionar input,
+    .formAdicionar select {
         width: 350px !important;
-
     }
 }
 @media screen and (max-width: 808px) {
-
     #container {
         margin-inline: 2%;
     }
 }
 
 @media screen and (max-width: 702px) {
-    .formAdicionar input, .formAdicionar select{
+    .formAdicionar input,
+    .formAdicionar select {
         width: 300px !important;
-
     }
 
     #nome {
@@ -220,19 +217,22 @@
     #div > div > div {
         flex-flow: column;
         align-items: start;
-
     }
 
-    .formAdicionar input, .formAdicionar select{
+    .botaoAbrir {
+        margin-top: 5px !important;
+        margin-bottom: 2px !important;
+    }
+
+    .formAdicionar input,
+    .formAdicionar select {
         width: 350px !important;
-
     }
 
-   .adicionarBtn {
-    margin-top: 0 !important;
+    .adicionarBtn {
+        margin-top: 0 !important;
         margin-bottom: 2% !important;
-   }
-
+    }
 }
 
 @media screen and (max-width: 508px) {
@@ -245,9 +245,9 @@
         margin-bottom: 1% !important;
     }
 
-    .formAdicionar input, .formAdicionar select{
+    .formAdicionar input,
+    .formAdicionar select {
         width: 300px !important;
-
     }
 
     .formEditar label {
@@ -264,7 +264,7 @@
 
     #botao {
         margin-top: 0;
-        margin-bottom: 0.5em !important;
+        margin-bottom: 0.5em;
     }
 
     .project_container > ul {
@@ -307,7 +307,7 @@
     }
 
     .formEditar {
-        margin-top: .9em;
+        margin-top: 0.9em;
     }
 }
 
@@ -320,5 +320,4 @@
     .formAdicionar select {
         width: 230px !important;
     }
-
 }

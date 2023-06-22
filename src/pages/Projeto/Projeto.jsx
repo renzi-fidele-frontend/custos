@@ -455,6 +455,7 @@ function Projeto() {
                                 <p
                                     id={styles.botao}
                                     style={{ margin: 0 }}
+                                    className={styles.botaoAbrir}
                                     onClick={() => {
                                         adicionar === true ? setAdicionar(false) : setAdicionar(true);
                                     }}
